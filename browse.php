@@ -202,14 +202,6 @@ if (isset($amount)) {
 <div id="FilterFrame"><h2 class="FilterText"><i class="fas fa-filter"></i> Filteren </h2>
     <form>
         <div id="FilterOptions">
-        <h4 class="FilterTopMargin"><i class="fas fa-sort"></i> Maat</h4>
-            <!-- <select name="maat" id="maat" onchange="this.form.submit()">> -->
-            <input type="checkbox" id="maatS" name="maatS" value="S">
-            <label for="maatS"> S</label>
-            <input type="checkbox" id="maatM" name="maatM" value="M">
-            <label for="vehicle2"> M</labe>
-            <input type="checkbox" id="L" name="maatL" value="L">
-            <label for="vehicle3"> L</label>
             <h4 class="FilterTopMargin"><i class="fas fa-search"></i> Zoeken</h4>
             <input type="text" name="search_string" id="search_string"
                    value="<?php print (isset($_GET['search_string'])) ? $_GET['search_string'] : ""; ?>"
