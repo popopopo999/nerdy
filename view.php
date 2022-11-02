@@ -70,7 +70,15 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
             ?>
 
 
-            <h1 class="StockItemID">Artikelnummer: <?php print $StockItem["StockItemID"]; ?></h1>
+        <?php
+        if(isset($_POST["btnToevoegen"])){
+            $_SESSION["itemid"] = $_POST["itemID"];
+            header("Location: winkelwagen.php");
+        }
+        ?>
+        <form method="post">
+            <h1 class="StockItemID" name="StockItemID">Artikelnummer: <?php print $StockItem["StockItemID"]; ?></h1>
+            <input type="hidden" name="itemID" value="<?php print $StockItem["StockItemID"] ?>">
             <h2 class="StockItemNameViewSize StockItemName">
                 <?php print $StockItem['StockItemName']; ?>
             </h2>
@@ -80,10 +88,23 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $StockItem['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
+                        <style>
+                            .Aantal {
+                                width: 60px;
+                                height: 30px;
+                            }
+                            .btnToevoegen {
+                                width: auto;
+                            }
+                        </style>
+                            <label for="Aantal">Aantal:</label> 
+                            <input class="Aantal" name="Aantal" type="number" value="1">
+                            <button class="btnToevoegen" name="btnToevoegen" type="submit">Toevoegen aan winkelwagen</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
 
         <div id="StockItemDescription">
             <h3>Artikel beschrijving</h3>
