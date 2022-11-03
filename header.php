@@ -55,7 +55,7 @@ establishWinkelwagen();
                 <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
             </li>
             <li>
-                <a href="google.com"><img src="https://www.pngall.com/wp-content/uploads/5/Shopping-Cart-PNG-HD-Image.png" width="40" height="40">
+                <a href="shoppingcart.php"><img src="https://www.pngall.com/wp-content/uploads/5/Shopping-Cart-PNG-HD-Image.png" width="40" height="40">
             </a>
             </li>
         </ul>
