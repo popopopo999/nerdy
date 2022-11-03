@@ -72,8 +72,8 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
 
         <?php
         if(isset($_POST["btnToevoegen"])){
-            $_SESSION["itemid"] = $_POST["itemID"];
-            header("Location: winkelwagen.php");
+            addProductToWinkelwagen($_POST["itemID"], $_POST["Aantal"]);
+            header("Location: shoppingcart.php");
         }
         ?>
         <form method="post">

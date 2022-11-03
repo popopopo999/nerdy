@@ -2,7 +2,9 @@
 <?php
 session_start();
 include "database.php";
+include "functions.php";
 $databaseConnection = connectToDatabase();
+establishWinkelwagen();
 ?>
 <!DOCTYPE html>
 <html lang="en">
