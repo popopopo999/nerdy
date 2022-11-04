@@ -7,7 +7,7 @@ function establishWinkelwagen(){
 function addProductToWinkelwagen($product, $amount = 1){
     $winkelwagen = $_SESSION["winkelwagen_inhoud"];
     if(array_key_exists($product, $winkelwagen)){
-        $winkelwagen[$product]++;
+        $winkelwagen[$product] += $amount;
     }else{
         $winkelwagen[$product] = $amount;
     }
