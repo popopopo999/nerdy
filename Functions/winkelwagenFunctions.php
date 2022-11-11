@@ -26,9 +26,39 @@ function getProductsQuery($products){
     }
     print($whereClause);
     $query = "
-        SELECT * 
-        FROM stockItems
+        SELECT *, 
+        (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
+        (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
+        FROM stockItems SI
+        JOIN stockitemholdings SIH USING(stockitemid)
+        JOIN stockitemstockgroups USING(StockItemID)
+        JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
         WHERE $whereClause";
 
     return $query;
 }
+
+function getShoppingcartContents($databaseConnection){
+    if(empty($_SESSION["winkelwagen_inhoud"]))
+        return array();
+
+    $Query = getProductsQuery($_SESSION["winkelwagen_inhoud"]);
+    $Statement = mysqli_prepare($databaseConnection, $Query);
+    //mysqli_stmt_bind_param($Statement, "i", $CategoryID);
+    mysqli_stmt_execute($Statement);
+    $Result = mysqli_stmt_get_result($Statement);
+    return $Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
+}
+
+function deleteItem($key){
+    $products = $_SESSION["winkelwagen_inhoud"];
+    unset($products[$key]);
+    $_SESSION["winkelwagen_inhoud"] = $products;
+}
+
+function updateNumberOfItems($key, $amount){
+    $products = $_SESSION["winkelwagen_inhoud"];
+    $products[$key] = $amount;
+    $_SESSION["winkelwagen_inhoud"] = $products;
+}
+

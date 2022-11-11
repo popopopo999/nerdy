@@ -88,17 +88,8 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                     <div class="CenterPriceLeftChild">
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $StockItem['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
-                        <style>
-                            .Aantal {
-                                width: 60px;
-                                height: 30px;
-                            }
-                            .btnToevoegen {
-                                width: auto;
-                            }
-                        </style>
                             <label for="Aantal">Aantal:</label> 
-                            <input class="Aantal" name="Aantal" type="number" value="1">
+                            <input class="Aantal" name="Aantal" type="number" value="1" min="1">
                             <button class="btnToevoegen" name="btnToevoegen" type="submit">Toevoegen aan winkelwagen</button>
                         </div>
                     </div>

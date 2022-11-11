@@ -1,25 +1,18 @@
 <?php
 include __DIR__ . "/header.php";
 
-$Query = getProductsQuery($_SESSION["winkelwagen_inhoud"]);
-$Statement = mysqli_prepare($databaseConnection, $Query);
-//mysqli_stmt_bind_param($Statement, "i", $CategoryID);
-mysqli_stmt_execute($Statement);
-$Result = mysqli_stmt_get_result($Statement);
-$Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
+//BUG: Sommige items voegt hij meerdere malen aan het winkelmandje toe.
 
-foreach($Result as $products) {
-?>
-
-<div id="ProductFrame">
-    <div class="ImgFrame"></div>
-</div>
-
-<?php
+//TODO: updaten zodat hij alle wijzigingen op de hele pagina aanpast.
+if(isset($_POST["changeAmountOfItems"])){
+    updateNumberOfItems($_POST["productID"], $_POST["Aantal"]);
 }
 
-?>
+if(isset($_POST["deleteItem"])){
+    deleteItem($_POST["productID"]);
+}
 
-<?php
+$cartContents = getShoppingcartContents($databaseConnection);
+showShoppingcartContents($cartContents);
+
 include __DIR__ . "/footer.php";
-?>
