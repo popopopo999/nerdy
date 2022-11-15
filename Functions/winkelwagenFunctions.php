@@ -34,7 +34,7 @@ function getProductsQuery($products){
         JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
         WHERE $whereClause
         GROUP BY StockItemID";
-    
+
     return $query;
 }
 
