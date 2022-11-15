@@ -1,5 +1,4 @@
 <?php
-
 function showShoppingcartContents($contents){
     if(empty($contents))
         print("<h1>Shopping cart is empty!</h1>");
@@ -7,6 +6,7 @@ function showShoppingcartContents($contents){
     foreach($contents as $row) {
         ?>
 
+        <link rel="stylesheet" href="Public/CSS/style.css" type="text/css">
 
             <!-- einde coderegel 1 van User story: bekijken producten   -->
             <div id="ProductFrame">
@@ -23,14 +23,14 @@ function showShoppingcartContents($contents){
                 </a>
                 <div id="StockItemFrameRight">
                     <div class="CenterPriceLeftChild">
-                        <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])); ?></h1>
+                        <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])*$_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]); ?></h1>
                         <h6>Inclusief BTW </h6>
                         <form method="post">
                             <label for="Aantal">Aantal:</label>
                             <input class="Aantal" type="number" min="1" name="Aantal" value="<?php print($_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]) ?>"><br>
-                            <input class="btnToevoegen" type="submit" name="changeAmountOfItems" value="Pas aantal items aan"><br>
+                            <input class="btnAanpassen" type="submit" name="changeAmountOfItems" value="Pas aan"><br>
                             <input type="hidden" name="productID" value="<?php print $row['StockItemID']; ?>">
-                            <input class="btnToevoegen" type="submit" name="deleteItem" value="Verwijder uit winkelwagen">
+                            <input class="btnVerwijder" type="submit" name="deleteItem" value="Verwijder">
                         </form>
                     </div>
                 </div>

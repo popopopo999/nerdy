@@ -482,7 +482,36 @@ ul#ul-class-price li {
 .Aantal {
     width: 60px;
     height: 30px;
+    border-radius: 8px;
 }
+
 .btnToevoegen {
     width: auto;
+    height: auto;
+    background: #676EFF;
+    border: 1px black solid;
+    border-radius: 8px;
+    color: #fff;
 }
+
+.btnAanpassen {
+    width: 100px;
+    height: 45px;
+    background: #676EFF;
+    border: 1px black solid;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.btnVerwijder {
+    width: 100px;
+    height: 45px;
+    background: darkred;
+    border: 1px black solid;
+    border-radius: 8px;
+    color: #fff;
+}
+
+
+
+
