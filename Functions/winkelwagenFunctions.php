@@ -24,17 +24,17 @@ function getProductsQuery($products){
         }
         $i++;
     }
-    print($whereClause);
     $query = "
         SELECT *, 
-        (SELECT ImagePath FROM stockitemimages WHERE StockItemID = SI.StockItemID LIMIT 1) as ImagePath,
+        
         (SELECT ImagePath FROM stockgroups JOIN stockitemstockgroups USING(StockGroupID) WHERE StockItemID = SI.StockItemID LIMIT 1) as BackupImagePath
         FROM stockItems SI
         JOIN stockitemholdings SIH USING(stockitemid)
         JOIN stockitemstockgroups USING(StockItemID)
         JOIN stockgroups ON stockitemstockgroups.StockGroupID = stockgroups.StockGroupID
-        WHERE $whereClause";
-
+        WHERE $whereClause
+        GROUP BY StockItemID";
+    
     return $query;
 }
 
