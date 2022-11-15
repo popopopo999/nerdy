@@ -35,7 +35,11 @@ function showShoppingcartContents($contents){
                     </div>
                 </div>
                 <h1 class="StockItemID">Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
-                <p class="StockItemName"><?php print $row["StockItemName"]; ?></p>
+                <p class="StockItemName">
+                    <a class="WinkelLink" href="view.php?id=<?php print $row["StockItemID"];?>">
+                        <?php print $row["StockItemName"]; ?>
+                    </a>
+                </p>
                 <p class="StockItemComments"><?php print $row["MarketingComments"]; ?></p>
             </div>
 
