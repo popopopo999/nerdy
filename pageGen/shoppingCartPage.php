@@ -27,7 +27,7 @@ function showShoppingcartContents($contents){
                         <h6>Inclusief BTW </h6>
                         <form method="post">
                             <label for="Aantal">Aantal:</label>
-                            <input class="Aantal" type="number" min="1" name="Aantal" value="<?php print($_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]) ?>"><br>
+                            <input class="Aantal" type="number" min="1" max="<?php print(str_replace("Voorraad: ", "", $row['QuantityOnHand']))?>" name="Aantal" value="<?php print($_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]) ?>"><br>
                             <input class="btnAanpassen" type="submit" name="changeAmountOfItems" value="Pas aan"><br>
                             <input type="hidden" name="productID" value="<?php print $row['StockItemID']; ?>">
                             <input class="btnVerwijder" type="submit" name="deleteItem" value="Verwijder">

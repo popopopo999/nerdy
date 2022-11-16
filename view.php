@@ -4,6 +4,8 @@ include __DIR__ . "/header.php";
 
 $StockItem = getStockItem($_GET['id'], $databaseConnection);
 $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
+$pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
+
 ?>
 <div id="CenteredContent">
     <?php
@@ -89,7 +91,7 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $StockItem['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6>
                             <label for="Aantal">Aantal:</label> 
-                            <input class="Aantal" name="Aantal" type="number" value="1" min="1">
+                            <input class="Aantal" name="Aantal" type="number" value="1" min="1" max="<?php print($pVoorraad);?>">
                             <button class="btnToevoegen" name="btnToevoegen" type="submit">Toevoegen aan winkelwagen</button>
                         </div>
                     </div>
