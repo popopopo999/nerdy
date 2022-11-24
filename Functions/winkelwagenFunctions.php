@@ -62,3 +62,4 @@ function updateNumberOfItems($key, $amount){
     $_SESSION["winkelwagen_inhoud"] = $products;
 }
 
+

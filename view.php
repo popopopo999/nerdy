@@ -5,7 +5,7 @@ include __DIR__ . "/header.php";
 $StockItem = getStockItem($_GET['id'], $databaseConnection);
 $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
 $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
-
+//isMaxVooraadOverschreden($StockItem);
 ?>
 <div id="CenteredContent">
     <?php
@@ -73,9 +73,28 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
 
 
         <?php
+
         if(isset($_POST["btnToevoegen"])){
             addProductToWinkelwagen($_POST["itemID"], $_POST["Aantal"]);
             //header("Location: shoppingcart.php");
+        }
+        if (isset($_GET["id"])) {
+            $stockItemID = $_GET["id"];
+        } else {
+            $stockItemID = 0;
+            //Query
+            $query = "SELECT QuantityOnHand FROM stockitemholdings WHERE StockItemID =".  $stockItemID;
+        $result = mysqli_query($databaseConnection, $query);
+        $row = mysqli_fetch_row($result);
+        $Voorraad = $row[0];}
+
+        if(isset($_POST["addToShoppingcart"])){
+            if ($Voorraad > $_POST["Hoeveelheid"]){
+                addProductToWinkelwagen($StockItem["StockItemID"]);
+                echo "Product is toegevoegd";
+            }else{
+                print "Zoveel voorraad is niet beschikbaar, probeer iets minder te bestellen";
+            }
         }
         ?>
         <form method="post">
@@ -92,6 +111,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                         <h6> Inclusief BTW </h6>
                             <label for="Aantal">Aantal:</label> 
                             <input class="Aantal" name="Aantal" type="number" value="1" min="1" max="<?php print($pVoorraad);?>">
+
                             <button class="btnToevoegen" name="btnToevoegen" type="submit">Toevoegen aan winkelwagen</button>
                         </div>
                     </div>
