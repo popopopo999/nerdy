@@ -4,6 +4,7 @@ include __DIR__ . "/header.php";
 
 $StockItem = getStockItem($_GET['id'], $databaseConnection);
 $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
+$StockItemGroups = getStockgroupsImage($_GET['id'], $databaseConnection);
 $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
 
 ?>
@@ -17,9 +18,19 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
             <div id="VideoFrame">
                 <?php print $StockItem['Video']; ?>
             </div>
-        <?php }
+        <?php
+        }
         ?>
         <div id="ArticleHeader">
+            <?php
+            if(!$StockItemImage) {
+                print_r($StockItemGroups);
+                ?>
+            <div id="ImageFrame"
+                 style="background-image: url('Public/StockGroupIMG/<?php print $StockItemGroups[0]['ImagePath']; ?>'); background-size: 300px; background-repeat: no-repeat; background-position: center;"></div>
+                <?php
+            }
+            ?>
             <?php
             if (isset($StockItemImage)) {
                 // één plaatje laten zien
@@ -69,6 +80,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                      style="background-image: url('Public/StockGroupIMG/<?php print $StockItem['BackupImagePath']; ?>'); background-size: cover;"></div>
                 <?php
             }
+
             ?>
 
 
