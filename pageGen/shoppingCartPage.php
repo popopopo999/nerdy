@@ -23,7 +23,7 @@ function showShoppingcartContents($contents){
                 </a>
                 <div id="StockItemFrameRight">
                     <div class="CenterPriceLeftChild">
-                        <h1 class="StockItemPriceText"><?php print sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])*$_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]); ?></h1>
+                        <h1 class="StockItemPriceText"><?php print sprintf(" € %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])*$_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]); ?></h1>
                         <h6>Inclusief BTW </h6>
                         <form method="post">
                             <label for="Aantal">Aantal:</label>
