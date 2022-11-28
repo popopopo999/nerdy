@@ -24,7 +24,6 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
         <div id="ArticleHeader">
             <?php
             if(!$StockItemImage) {
-                print_r($StockItemGroups);
                 ?>
             <div id="ImageFrame"
                  style="background-image: url('Public/StockGroupIMG/<?php print $StockItemGroups[0]['ImagePath']; ?>'); background-size: 300px; background-repeat: no-repeat; background-position: center;"></div>
@@ -88,7 +87,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
         if(isset($_POST["btnToevoegen"])){
             addProductToWinkelwagen($_POST["itemID"], $_POST["Aantal"]);
             //header("Location: shoppingcart.php");
-        }
+            }
         ?>
         <form method="post">
             <h1 class="StockItemID" name="StockItemID">Artikelnummer: <?php print $StockItem["StockItemID"]; ?></h1>
@@ -105,11 +104,25 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                             <label for="Aantal">Aantal:</label> 
                             <input class="Aantal" name="Aantal" type="number" value="1" min="1" max="<?php print($pVoorraad);?>">
                             <button class="btnToevoegen" name="btnToevoegen" type="submit">Toevoegen aan winkelwagen</button>
-                        </div>
-                    </div>
-                </div>
+        </form>
+
+        <form method="post" action="shoppingcart.php">
+            <?php
+            if(isset($_POST["btnToevoegen"])){
+                addProductToWinkelwagen($_POST["itemID"], $_POST["Aantal"]);
+                //header("Location: shoppingcart.php");
+                ?>
+                <br> <button class="btnWinkel" name="NaarWinkelwagen" type="submit">Toegevoegd! Ga hier naar je winkelwagen</button>
+                <?php
+            }
+            ?>
             </div>
         </form>
+
+        </div>
+        </div>
+        </div>
+        </div>
 
         <div id="StockItemDescription">
             <h3>Artikel beschrijving</h3>
