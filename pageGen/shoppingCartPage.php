@@ -6,7 +6,7 @@ function showShoppingcartContents($contents){
     print("<h1>Shopping cart is empty!</h1>");
     
     foreach($contents as $row) {
-        $prijs = sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])*$_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]); 
+        $prijs = sprintf(" %0.2f", berekenVerkoopPrijs($row["RecommendedRetailPrice"], $row["TaxRate"])*$_SESSION["winkelwagen_inhoud"][$row["StockItemID"]]);
         $voorraad = str_replace("Voorraad: ", "", $row['QuantityOnHand']);
         $aantal = $_SESSION["winkelwagen_inhoud"][$row["StockItemID"]];
         ?>
@@ -70,7 +70,7 @@ function showShoppingcartContents($contents){
                         </tr>
                         <tr>
                             <td>Totaalprijs (inclusief btw)</td>
-                            <td>&euro; <?php echo $_SESSION["totaalprijs"];?> </td>
+                            <td>&euro; <?php echo(sprintf(" %0.2f", $_SESSION["totaalprijs"]));?> </td>
                         </tr>
                         <tr>
                             <td colspan="2">

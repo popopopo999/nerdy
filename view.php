@@ -109,8 +109,6 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
         <form method="post" action="shoppingcart.php">
             <?php
             if(isset($_POST["btnToevoegen"])){
-                addProductToWinkelwagen($_POST["itemID"], $_POST["Aantal"]);
-                //header("Location: shoppingcart.php");
                 ?>
                 <br> <button class="btnWinkel" name="NaarWinkelwagen" type="submit">Toegevoegd! Ga hier naar je winkelwagen</button>
                 <?php
