@@ -49,16 +49,18 @@ establishWinkelwagen();
             </ul>
         </div>
 <!-- code voor US3: zoeken -->
-
 <ul id="ul-class-navigation">
             <li>
                 <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
             </li>
             <li>
-                <a href="shoppingcart.php"><img src="https://www.pngall.com/wp-content/uploads/5/Shopping-Cart-PNG-HD-Image.png" width="40" height="40">
-            </a>
+                <a href="shoppingcart.php"><img src="Public\Img\cartimg.png" width="40" height="40">
+                    <i class="result" style="color: yellow;">
+                    <?php echo count(getShoppingcartContents($databaseConnection)); ?>
+                    </i>
+                </a>
             </li>
-        </ul>
+        </ul> 
 
 <!-- einde code voor US3 zoeken -->
     </div>

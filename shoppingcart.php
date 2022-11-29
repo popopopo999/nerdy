@@ -15,4 +15,5 @@ if(isset($_POST["deleteItem"])){
 $cartContents = getShoppingcartContents($databaseConnection);
 showShoppingcartContents($cartContents);
 
+
 include __DIR__ . "/footer.php";
