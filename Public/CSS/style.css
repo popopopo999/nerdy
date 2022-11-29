@@ -516,6 +516,15 @@ ul#ul-class-price li {
     color: #fff;
 }
 
+.btnWinkel {
+    width: auto;
+    height: 50px;
+    background: rgb(36, 41, 143);
+    border: 1px black solid;
+    border-radius: 8px;
+    color: #fff;
+}
+
 .WinkelLink {
     color: #fff;
 }
