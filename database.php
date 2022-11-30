@@ -95,3 +95,23 @@ function getStockItemImage($id, $databaseConnection) {
 
     return $R;
 }
+
+function getStockgroupsImage($id, $databaseConnection) {
+
+    $Query = "
+        SELECT DISTINCT SG.ImagePath
+        FROM stockgroups SG
+        JOIN stockitemstockgroups SISG USING (StockGroupID)
+        JOIN stockitems SI USING (StockItemID)
+        WHERE SG.ImagePath IS NOT NULL
+        AND SG.StockgroupID = SISG.StockgroupID
+        AND SISG.StockItemID = ?";
+
+    $Statement = mysqli_prepare($databaseConnection, $Query);
+    mysqli_stmt_bind_param($Statement, "i", $id);
+    mysqli_stmt_execute($Statement);
+    $R = mysqli_stmt_get_result($Statement);
+    $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
+
+    return $R;
+}
