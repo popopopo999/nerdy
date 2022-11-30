@@ -8,7 +8,7 @@ include __DIR__ . "/header.php";
         <div>
             <h2 id="afrekenen">Afrekenen</h2>
             <br>
-            <p>Totaal te betalen: €xx,xx</p>
+            <p>Totaal te betalen: €<?php echo(sprintf(" %0.2f", $_SESSION["totaalprijs"]));?></p>
             <br><br>
             <h4>Volledige naam</h4>
             <input type="text" name="Voornaam" id="Voornaam" placeholder="Voornaam"<br>

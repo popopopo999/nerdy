@@ -75,6 +75,7 @@ function showShoppingcartContents($contents){
                         <tr>
                             <td colspan="2">
                                 <form method="POST" action="BetaalPagina.php">
+                                    <input type="hidden" name="totaalPrijs" value="<?php $_SESSION["totaalprijs"]; ?>">
                                     <input class="btnAanpassen" type="submit" name="verwijzingBetaling" value="Verder naar betalen"
                             </td>
                         </tr>
