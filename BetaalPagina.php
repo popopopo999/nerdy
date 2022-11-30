@@ -21,7 +21,7 @@ include __DIR__ . "/header.php";
     <h4>Adresgegevens</h4>
     <br>
     <h6>Straatnaam</h6>
-    <input type="text" name="Straatnaam" id="straatnaam" placeholder="Straatnaam"<br>
+    <input type="text" name="Straatnaam" id="Straatnaam" placeholder="Straatnaam"<br>
     <br><br>
     <input type="text" name="Huisnummer" id="huisnummer" placeholder="Huisnummer"<br>
     <input type="text" name="Toevoeging" id="toevoeging" placeholder="Toevoeging"<br>
