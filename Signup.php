@@ -28,7 +28,7 @@ function addValue($value){
                 <input type="text" name="middlename" placeholder="Tussenvoegsel" <?php addValue('TussenVoegsel') ?>>
                 <input type="text" name="sirname" placeholder="Achternaam" <?php addValue('Achternaam') ?>>
                 <input type="text" name="Telephonenumber" placeholder="Telefoonnummer" <?php addValue('Telefoonnummer') ?>>
-                <input type="text" name="email" placeholder="E-mail" <?php addValue('E-mailadres') ?>>
+                <input type="email" name="email" placeholder="E-mail" <?php addValue('E-mailadres') ?>>
                 <input type="text" name="street" placeholder="Straatnaam" <?php addValue('Straatnaam') ?>>
                 <input type="text" name="housenumber" placeholder="Huisnummer" <?php addValue('Huisnummer') ?>>
                 <input type="text" name="toevoeging" placeholder="Toevoeging" <?php addValue('Toevoeging') ?>>

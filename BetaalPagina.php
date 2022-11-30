@@ -20,7 +20,7 @@ if(isset($_SESSION["Gebruikersnaam"])){
             <br><br><br>
             <h4>Contactgegevens</h4>
             <input type="text" name="Telefoonnummer" id="telefoonnummer" placeholder="Telefoonnummer" required <br>
-            <input type="text" name="E-mailadres" id="E-mailadres" placeholder="E-mailadres" required<br>
+            <input type="email" name="E-mailadres" id="E-mailadres" placeholder="E-mailadres" required<br>
             <br><br><br>
             <h4>Adresgegevens</h4>
             <br>

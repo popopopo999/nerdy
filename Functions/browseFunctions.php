@@ -93,6 +93,7 @@ function createUser($connection, $uid, $email, $firstname, $middlename, $lastnam
     mysqli_stmt_bind_param($stmt, "sssssssisss", $firstname, $middlename, $lastname, $email, $uid, $Hashedpwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+    LoginUser($connection, $uid, $pwd);
     header("location:?error=none");
     exit();
 }
@@ -100,10 +101,10 @@ function createUser($connection, $uid, $email, $firstname, $middlename, $lastnam
 function LoginUser($databaseConnection, $username, $pwd) {
     $uidExists = uidExists($databaseConnection, $username, $username);
 
-//    if ($uidExists == false) {
-//        header("location: ?error=uiddoesntmatch");
-//        exit();
-//    }
+    if ($uidExists == false) {
+        header("location: ?error=uiddoesntmatch");
+        exit();
+    }
 
     $pwdHashed = $uidExists["Wachtwoord"];
     $checkedPwd = password_verify($pwd, $pwdHashed);
