@@ -53,9 +53,16 @@ establishWinkelwagen();
         </div>
 <!-- code voor US3: zoeken -->
 <ul id="ul-class-navigation">
-            <li>
-                <a href="Signup.php"> aanmelden </a>
-            </li>
+    <?php
+    if (isset($_SESSION["Gebruikersnaam"])) {
+        echo "<li><a href=\"profile.php\"> Profiel </a></li>";
+        echo "<li><a href=\"Functions\logout.inc.php\"> Uitloggen</a></li>";
+    }
+    else {
+        echo "<li><a href=\"Signup.php\"> aanmelden </a></li>";
+        echo "<li><a href=\"login.php\"> Inloggen</a></li>";
+    }
+    ?>
             <li>
                 <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
             </li>
