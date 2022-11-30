@@ -79,7 +79,6 @@ function uidExists($databaseConnection, $uid, $email) {
     mysqli_stmt_close($stmt);
 }
 
-
 function createUser($connection, $uid, $email, $firstname, $middlename, $lastname, $pwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber) {
     $sql = "INSERT INTO klant (Voornaam, Tussenvoegsel, Achternaam, Email, Gebruikersnaam, Wachtwoord, Straatnaam, Huisnummer, Toevoeging, Postcode, Telefoonnummer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($connection);
@@ -96,3 +95,38 @@ function createUser($connection, $uid, $email, $firstname, $middlename, $lastnam
     header("location:?error=none");
     exit();
 }
+
+function LoginUser($databaseConnection, $username, $pwd) {
+    $uidExists = uidExists($databaseConnection, $username, $username);
+
+//    if ($uidExists == false) {
+//        header("location: ?error=uiddoesntmatch");
+//        exit();
+//    }
+
+    $pwdHashed = $uidExists["Wachtwoord"];
+    $checkedPwd = password_verify($pwd, $pwdHashed);
+
+//    if ($checkedPwd == false) {
+//        header("location: ../login.php?error=pwdDoesntMatch");
+//        exit();
+//    }
+    if ($checkedPwd == true){
+        session_start();
+        $_SESSION["Gebruikersnaam"] = $uidExists["Gebruikersnaam"];
+        header("location: ../index.php");
+        exit();
+    }
+}
+
+function emptyInputLogin($username, $pwd) {
+    $result;
+    if(empty($username) || empty($pwd)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
