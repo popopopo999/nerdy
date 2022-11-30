@@ -74,7 +74,8 @@ function showShoppingcartContents($contents){
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <button class="btnCheckout">Afrekenen</button>
+                                <form method="POST" action="BetaalPagina.php">
+                                    <input class="btnAanpassen" type="submit" name="verwijzingBetaling" value="Verder naar betalen"
                             </td>
                         </tr>
                     </table>
