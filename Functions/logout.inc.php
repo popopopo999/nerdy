@@ -1,7 +1,6 @@
 <?php
-//session_start();
-//session_unset();
-//session_destroy();
-//
-//header("location: ../index.php");
-//exit();
+session_start();
+function logout(){
+    unset($_SESSION["Gebruikersnaam"]);
+    header("Location: index.php");
+}

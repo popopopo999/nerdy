@@ -89,7 +89,8 @@ function createUser($connection, $uid, $email, $firstname, $middlename, $lastnam
 
     $Hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sssssssisss", $uid, $email, $firstname, $middlename, $lastname, $Hashedpwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber);
+    //mysqli_stmt_bind_param($stmt, "sssssssisss", $uid, $email, $firstname, $middlename, $lastname, $Hashedpwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber);
+    mysqli_stmt_bind_param($stmt, "sssssssisss", $firstname, $middlename, $lastname, $email, $uid, $Hashedpwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location:?error=none");
@@ -112,9 +113,9 @@ function LoginUser($databaseConnection, $username, $pwd) {
 //        exit();
 //    }
     if ($checkedPwd == true){
-        session_start();
+        //session_start();
         $_SESSION["Gebruikersnaam"] = $uidExists["Gebruikersnaam"];
-        header("location: ../index.php");
+        header("location: ./index.php");
         exit();
     }
 }

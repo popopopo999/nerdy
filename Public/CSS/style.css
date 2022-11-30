@@ -529,12 +529,21 @@ ul#ul-class-price li {
     color: #fff;
 }
 #betalenBtn {
-    height: 150%;
+    height: 4%;
     width: 47%;
     background: #676EFF;
     border: 1px black solid;
     border-radius: 15px;
     color: #fff;
+}
+
+#signUpBox, #userDetails{
+    margin-bottom: 2%;
+    width: 47%;
+}
+
+#signUpBox input{
+    margin-bottom: 1%;
 }
 
 .centerAlign {

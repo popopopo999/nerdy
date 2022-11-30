@@ -1,6 +1,9 @@
 
 <?php
 include 'header.php';
+
+if(isset($_POST["submit"]))
+    login();
 ?>
 
 <section class="signup-form">

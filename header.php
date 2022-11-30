@@ -56,7 +56,7 @@ establishWinkelwagen();
     <?php
     if (isset($_SESSION["Gebruikersnaam"])) {
         echo "<li><a href=\"profile.php\"> Profiel </a></li>";
-        echo "<li><a href=\"Functions\logout.inc.php\"> Uitloggen</a></li>";
+        echo "<li><a href=\"logout.php\"> Uitloggen</a></li>";
     }
     else {
         echo "<li><a href=\"Signup.php\"> aanmelden </a></li>";
