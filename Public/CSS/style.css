@@ -516,6 +516,73 @@ ul#ul-class-price li {
     color: #fff;
 }
 
+#BetalenBtn {
+    left: 0%;
+    width: 30%;
+    background: #676EFF;
+    border: 1px black solid;
+    border-radius: 8px;
+    color: #fff;
+}
 
+#Afrekenen {
+    position: relative;
+    left: 200px;
+    top: 0%;
+}
 
+#Voornaam {
+    left: 0%;
+    width: 15%;
+}
 
+#TussenVoegsel {
+    left: 15%;
+    width: 15%
+}
+
+#Achternaam {
+    left: 15%;
+    width: 15%;
+}
+
+#Straatnaam {
+    left: 0%;
+    width: 15%;
+}
+
+#huisnummer {
+    position: relative;
+    left: 0%;
+    width: 15%;
+}
+
+#toevoeging {
+    left: 15%;
+    width: 15%;
+}
+
+#postcode {
+    left: 0%;
+    width: 15%;
+}
+
+#telefoonnummer {
+    left: 0%;
+    width: 20%;
+}
+
+#E-mailadres {
+    left: 15%;
+    width: 30%
+}
+
+#accountMaken {
+
+}
+
+#accountMaken {
+    left: 0%;
+    width: 25px;
+    height: 25px;
+}
