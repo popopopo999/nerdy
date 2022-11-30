@@ -52,7 +52,7 @@ if (isset($_GET["error"])) {
     }
 }
 ?>
-?>
+
 <?php
 include 'footer.php';
 ?>
