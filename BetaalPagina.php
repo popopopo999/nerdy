@@ -32,12 +32,12 @@ include __DIR__ . "/header.php";
     <div>
         <br>
     <label><h3>Account maken? </h3></label>
-    <input type="checkbox" class="cbBetalen" id="accountMaken" value="Acc maken" name="Account maken" form=""
+    <input type="checkbox" class="cbBetalen" id="accountMaken" value="Acc maken" name="Account maken">
     <br><br><br>
     </div>
 </div>
 
 
-
+<div>
 <input type="submit" id="betalenBtn" value="Betalen">
-<br><br><br><br>
+</div>
