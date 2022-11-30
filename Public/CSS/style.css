@@ -74,6 +74,10 @@ ul#ul-class-navigation li {
     text-decoration: none;
     text-decoration-color: currentcolor;
 }
+/* Header */
+.numCart{
+    color: yellow;
+}
 #Header {
     position: fixed;
     top:0;
@@ -512,10 +516,38 @@ ul#ul-class-price li {
     color: #fff;
 }
 
+.btnWinkel {
+    width: auto;
+    height: 50px;
+    background: rgb(36, 41, 143);
+    border: 1px black solid;
+    border-radius: 8px;
+    color: #fff;
+}
+
 .WinkelLink {
     color: #fff;
 }
 
-
-
-
+/* Shoppingcart */
+#shoppingcartContainer {
+    width: 100%;
+}
+#totaalPrijscart{
+    display: inline-block;
+    position: fixed;
+    top: 220px;
+    right: 0;
+    width: 25%;   
+}
+.btnCheckout {
+    border-radius: 8px;
+    width: 100%; 
+    background: #676EFF;
+}
+.tblCheckout {
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #000000;
+}
+/* End shoppingcart */
