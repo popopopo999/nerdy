@@ -33,11 +33,8 @@ include __DIR__ . "/header.php";
         <br>
     <label><h3>Account maken? </h3></label>
     <input type="checkbox" class="cbBetalen" id="accountMaken" value="Acc maken" name="Account maken">
-    <br><br><br>
+        <div>
+            <input type="submit" id="betalenBtn" value="Betalen">
+        </div>
     </div>
-</div>
-
-
-<div>
-<input type="submit" id="betalenBtn" value="Betalen">
 </div>
