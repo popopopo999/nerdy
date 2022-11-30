@@ -40,17 +40,23 @@ establishWinkelwagen();
                         <a href="browse.php?category_id=<?php print $HeaderStockGroup['StockGroupID']; ?>"
                            class="HrefDecoration"><?php print $HeaderStockGroup['StockGroupName']; ?></a>
                     </li>
+
                     <?php
                 }
                 ?>
+
                 <li>
                     <a href="categories.php" class="HrefDecoration">Alle categorieën</a>
                 </li>
+
             </ul>
         </div>
 <!-- code voor US3: zoeken -->
 
 <ul id="ul-class-navigation">
+            <li>
+                <a href="Signup.php"> aanmelden </a>
+            </li>
             <li>
                 <a href="browse.php" class="HrefDecoration"><i class="fas fa-search search"></i> Zoeken</a>
             </li>
