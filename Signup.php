@@ -1,12 +1,14 @@
 <?php
 include __DIR__ . "/header.php";
 
-if(isset($_POST["submit"]))
+if(isset($_POST["submit"])){
+    $_SESSION["Account_maken"] = $_POST;
     signUp();
+}
 
 function addValue($value){
-    if(isset($_GET[$value])){
-        $test = $_GET[$value];
+    if(isset($_SESSION["Account_maken"][$value])){
+        $test = $_SESSION["Account_maken"][$value];
         print('value=' . $test);
     }
 }
@@ -24,15 +26,15 @@ function addValue($value){
             </div>
             <div id="signUpBox">
 
-                <input type="text" name="firstname" placeholder="Voornaam" <?php addValue('Voornaam') ?> >
-                <input type="text" name="middlename" placeholder="Tussenvoegsel" <?php addValue('TussenVoegsel') ?>>
-                <input type="text" name="sirname" placeholder="Achternaam" <?php addValue('Achternaam') ?>>
-                <input type="text" name="Telephonenumber" placeholder="Telefoonnummer" <?php addValue('Telefoonnummer') ?>>
-                <input type="email" name="email" placeholder="E-mail" <?php addValue('E-mailadres') ?>>
-                <input type="text" name="street" placeholder="Straatnaam" <?php addValue('Straatnaam') ?>>
-                <input type="text" name="housenumber" placeholder="Huisnummer" <?php addValue('Huisnummer') ?>>
-                <input type="text" name="toevoeging" placeholder="Toevoeging" <?php addValue('Toevoeging') ?>>
-                <input type="text" name="ZipCode" placeholder="Postcode" <?php addValue('Postcode') ?>>
+                <input type="text" name="firstname" placeholder="Voornaam" <?php addValue('firstname') ?> >
+                <input type="text" name="middlename" placeholder="Tussenvoegsel" <?php addValue('middlename') ?>>
+                <input type="text" name="sirname" placeholder="Achternaam" <?php addValue('sirname') ?>>
+                <input type="text" name="Telephonenumber" placeholder="Telefoonnummer" <?php addValue('Telephonenumber') ?>>
+                <input type="email" name="email" placeholder="E-mail" <?php addValue('email') ?>>
+                <input type="text" name="street" placeholder="Straatnaam" <?php addValue('street') ?>>
+                <input type="text" name="housenumber" placeholder="Huisnummer" <?php addValue('housenumber') ?>>
+                <input type="text" name="toevoeging" placeholder="Toevoeging" <?php addValue('toevoeging') ?>>
+                <input type="text" name="ZipCode" placeholder="Postcode" <?php addValue('ZipCode') ?>>
             </div>
             <button type="submit" name="submit" id="betalenBtn"> Signup</button>
 
@@ -63,6 +65,7 @@ function addValue($value){
             echo "<p>U bent ingelogd!</p>";
         }
     }
+
     include 'footer.php';
     ?>
     </section>
