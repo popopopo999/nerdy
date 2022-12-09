@@ -6,13 +6,6 @@ if(isset($_POST["submit"])){
     signUp();
 }
 
-function addValue($value){
-    if(isset($_SESSION["Account_maken"][$value])){
-        $test = $_SESSION["Account_maken"][$value];
-        print('value=' . $test);
-    }
-}
-
 ?>
 
 <section class="signup-form">
@@ -24,18 +17,7 @@ function addValue($value){
                 <input type="password" name="pwd" placeholder="Wachtwoord">
                 <input type="password" name="pwdrepeat" placeholder="Herhaal Wachtwoord">
             </div>
-            <div id="signUpBox">
-
-                <input type="text" name="firstname" placeholder="Voornaam" <?php addValue('firstname') ?> >
-                <input type="text" name="middlename" placeholder="Tussenvoegsel" <?php addValue('middlename') ?>>
-                <input type="text" name="sirname" placeholder="Achternaam" <?php addValue('sirname') ?>>
-                <input type="text" name="Telephonenumber" placeholder="Telefoonnummer" <?php addValue('Telephonenumber') ?>>
-                <input type="email" name="email" placeholder="E-mail" <?php addValue('email') ?>>
-                <input type="text" name="street" placeholder="Straatnaam" <?php addValue('street') ?>>
-                <input type="text" name="housenumber" placeholder="Huisnummer" <?php addValue('housenumber') ?>>
-                <input type="text" name="toevoeging" placeholder="Toevoeging" <?php addValue('toevoeging') ?>>
-                <input type="text" name="ZipCode" placeholder="Postcode" <?php addValue('ZipCode') ?>>
-            </div>
+            <?php showUserForm(); ?>
             <button type="submit" name="submit" id="betalenBtn"> Signup</button>
 
         </form>

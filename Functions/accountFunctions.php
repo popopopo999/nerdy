@@ -1,5 +1,5 @@
 <?php
-function createUser($connection, $uid, $email, $firstname, $middlename, $lastname, $pwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber) {
+function createUser($connection, $uid, $email, $Voornaam, $Tussenvoegsel, $lastname, $pwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer) {
     $sql = "INSERT INTO klant (Voornaam, Tussenvoegsel, Achternaam, Email, Gebruikersnaam, Wachtwoord, Straatnaam, Huisnummer, Toevoeging, Postcode, Telefoonnummer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($connection);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -9,7 +9,7 @@ function createUser($connection, $uid, $email, $firstname, $middlename, $lastnam
 
     $Hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sssssssisss", $firstname, $middlename, $lastname, $email, $uid, $Hashedpwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber);
+    mysqli_stmt_bind_param($stmt, "sssssssisss", $Voornaam, $Tussenvoegsel, $lastname, $email, $uid, $Hashedpwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     LoginUser($connection, $uid, $pwd);
@@ -40,18 +40,18 @@ function LoginUser($databaseConnection, $username, $pwd) {
 }
 
 function signUp(){
-    $firstname = $_POST["firstname"];
-    $middlename = $_POST["middlename"];
-    $sirname = $_POST["sirname"];
-    $email = $_POST["email"];
+    $Voornaam = $_POST["Voornaam"];
+    $Tussenvoegsel = $_POST["Tussenvoegsel"];
+    $Achternaam = $_POST["Achternaam"];
+    $email = $_POST["Email"];
     $uid = $_POST["uid"];
     $pwd = $_POST["pwd"];
     $pwdrepeat = $_POST["pwdrepeat"];
-    $street = $_POST["street"];
-    $houseNumber = $_POST["housenumber"];
-    $toevoeging = $_POST["toevoeging"];
-    $zipcode = $_POST["ZipCode"];
-    $telephoneNumber = $_POST["Telephonenumber"];
+    $Straatnaam = $_POST["Straatnaam"];
+    $Huisnummer = $_POST["Huisnummer"];
+    $toevoeging = $_POST["Toevoeging"];
+    $Postcode = $_POST["Postcode"];
+    $Telefoonnummer = $_POST["Telefoonnummer"];
 
 
     require_once 'database.php';
@@ -59,7 +59,7 @@ function signUp(){
 
     $databaseConnection = connectToDatabase();
 
-    if (emptyInputSignIn($firstname,$sirname, $email, $uid, $pwd, $pwdrepeat) !== false) {
+    if (emptyInputSignIn($Voornaam,$Achternaam, $email, $uid, $pwd, $pwdrepeat) !== false) {
         header("location:?error=emptyinput");
         exit();
     }
@@ -80,7 +80,7 @@ function signUp(){
         exit();
     }
 
-    createUser($databaseConnection, $uid, $email, $firstname, $middlename, $sirname, $pwd, $street, $houseNumber, $toevoeging, $zipcode, $telephoneNumber);
+    createUser($databaseConnection, $uid, $email, $Voornaam, $Tussenvoegsel, $Achternaam, $pwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer);
 }
 
 function login(){
@@ -102,5 +102,24 @@ function login(){
 function logout(){
     session_start();
     unset($_SESSION["Gebruikersnaam"]);
+    if(isset($_SESSION["Account_maken"]))
+        unset($_SESSION["Account_maken"]);
+    
     header("Location: index.php");
+}
+
+function getUserData($connection){
+    $sql = "SELECT Voornaam, Tussenvoegsel, Achternaam, Email, Straatnaam, Huisnummer, Toevoeging, Postcode, Telefoonnummer
+            FROM klant WHERE Gebruikersnaam = '" . $_SESSION["Gebruikersnaam"] . "'";
+    $stmt = mysqli_stmt_init($connection);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: localhost/nerdy-Clone/nerdy/?error=stmtfailed");
+        exit();
+    }
+
+    $Statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_execute($Statement);
+    $Result = mysqli_stmt_get_result($Statement);
+
+    return $Result = mysqli_fetch_all($Result, MYSQLI_ASSOC);
 }
