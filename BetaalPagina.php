@@ -35,7 +35,7 @@ include __DIR__ . "/header.php";
             <label><h3>Account maken? </h3></label>
             <input type="checkbox" class="cbBetalen" id="accountMaken" value="Acc_maken" name="Account_maken">
             <div>
-                <input type="submit" id="betalenBtn" value="Betalen">
+                <input type="submit" id="betalenBtn" value="Betalen" >
             </div>
         </div>
     </form>
