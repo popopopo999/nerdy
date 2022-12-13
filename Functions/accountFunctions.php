@@ -104,7 +104,7 @@ function logout(){
     unset($_SESSION["Gebruikersnaam"]);
     if(isset($_SESSION["Account_maken"]))
         unset($_SESSION["Account_maken"]);
-    
+
     header("Location: index.php");
 }
 
