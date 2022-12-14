@@ -90,10 +90,11 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
             }
         ?>
         <form method="post">
-            <h1 class="StockItemID" name="StockItemID">Artikelnummer: <?php print $StockItem["StockItemID"]; ?></h1>
+            <h1 class="StockItemID" name="StockItemID">Artikelnummer: <?php print $StockItem["StockItemID"]; ?> <br><br>
+                <p><?php print(totalReviewScore($databaseConnection, $_GET['id'])) ?> / 5 (<?php print(howManyReviews($databaseConnection, $_GET['id'])); ?> reviews)</p></h1>
             <input type="hidden" name="itemID" value="<?php print $StockItem["StockItemID"] ?>">
             <h2 class="StockItemNameViewSize StockItemName">
-                <?php print $StockItem['StockItemName']; ?>
+                <?php print $StockItem['StockItemName']; ?>$_GET['id']
             </h2>
             <div class="QuantityText"><?php print getVoorraadTekst($StockItem); ?></div>
             <div id="StockItemHeaderLeft">
@@ -162,9 +163,30 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                 <?php
             }
             ?>
-        </div>
         <?php
     } else {
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
     } ?>
+</div>
+
+<!-- Reviews -->
+<div>
+    <h1> <?php print(totalReviewScore($databaseConnection, $_GET['id'])) ?> / 5 </h1>
+    <h4> Op basis van <?php print(howManyReviews($databaseConnection,$_GET['id'])); ?> reviews</h4>
+<div id="reviewForm">
+    <br>
+<?php if(isset($_SESSION["Gebruikersnaam"])) { ?>
+    <form method="POST" action="insertReview.php">
+        <input type="hidden" name="productID" value="<?php print($_GET['id']); ?>">
+        Score <input type="number" name="score" value="" min="1" max="5" placeholder="Geef hier een score van 1 tot 5" required>
+        Review <textarea name="reviewText" placeholder="Schrijf hier uw review." required></textarea>
+        <input type="submit" name="sendReview" value="Plaats review">
+    </form>
+    <?php } ?>
+</div>
+    <?php
+    $aantalReviews = reviewsProduct($databaseConnection, $_GET['id']);
+    showReviews($aantalReviews);
+
+    ?>
 </div>

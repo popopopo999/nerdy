@@ -6,3 +6,4 @@ foreach(glob("Functions/*.php") as $filename){
 foreach(glob("pageGen/*.php") as $filename){
     include $filename;
 }
+
