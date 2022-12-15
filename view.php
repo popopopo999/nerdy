@@ -94,7 +94,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                 <p><?php print(totalReviewScore($databaseConnection, $_GET['id'])) ?> / 5 (<?php print(howManyReviews($databaseConnection, $_GET['id'])); ?> reviews)</p></h1>
             <input type="hidden" name="itemID" value="<?php print $StockItem["StockItemID"] ?>">
             <h2 class="StockItemNameViewSize StockItemName">
-                <?php print $StockItem['StockItemName']; ?>$_GET['id']
+                <?php print $StockItem['StockItemName']; ?>
             </h2>
             <div class="QuantityText"><?php print getVoorraadTekst($StockItem); ?></div>
             <div id="StockItemHeaderLeft">
@@ -170,9 +170,12 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
 </div>
 
 <!-- Reviews -->
-<div>
-    <h1> <?php print(totalReviewScore($databaseConnection, $_GET['id'])) ?> / 5 </h1>
-    <h4> Op basis van <?php print(howManyReviews($databaseConnection,$_GET['id'])); ?> reviews</h4>
+
+<div id="reviewArea">
+    <div id="reviewBox">
+    <h3> <?php print(totalReviewScore($databaseConnection, $_GET['id'])) ?> / 5 </h3>
+    </div>
+    <h6> <br>Op basis van <?php print(howManyReviews($databaseConnection,$_GET['id'])); ?> reviews<br><br></h6>
 <div id="reviewForm">
     <br>
 <?php if(isset($_SESSION["Gebruikersnaam"])) { ?>
@@ -184,9 +187,10 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
     </form>
     <?php } ?>
 </div>
+    <div id="reviewList">
     <?php
     $aantalReviews = reviewsProduct($databaseConnection, $_GET['id']);
     showReviews($aantalReviews);
-
     ?>
+    </div>
 </div>

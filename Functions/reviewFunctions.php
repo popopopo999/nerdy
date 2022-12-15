@@ -63,7 +63,7 @@ function showReviews($reviews) {
     } else {
 ?>
 
-    <table>
+    <table id="listOfReviews">
         <tr>
             <th>Gebruikersnaam</th>
             <th>Score</th>
@@ -106,6 +106,10 @@ WHERE stockitemID = ".$itemID;
     $Result = $Result[0]["SUM(score)/COUNT(score)"];
 
     $Result = round($Result, 1);
+
+    if($Result == 0) {
+        $Result = "...";
+    }
 
     return $Result;
 }

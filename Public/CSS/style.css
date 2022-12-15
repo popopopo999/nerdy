@@ -492,7 +492,7 @@ ul#ul-class-price li {
 .btnToevoegen {
     width: auto;
     height: auto;
-    background: #676EFF;
+    background: #50C878;
     border: 1px black solid;
     border-radius: 8px;
     color: #fff;
@@ -501,7 +501,7 @@ ul#ul-class-price li {
 .btnAanpassen {
     width: 100px;
     height: 45px;
-    background: #676EFF;
+    background: #50C878;
     border: 1px black solid;
     border-radius: 8px;
     color: #fff;
@@ -510,7 +510,7 @@ ul#ul-class-price li {
 .btnVerwijder {
     width: 100px;
     height: 45px;
-    background: darkred;
+    background: #D2042D;
     border: 1px black solid;
     border-radius: 8px;
     color: #fff;
@@ -638,4 +638,28 @@ ul#ul-class-price li {
     border: 1px solid;
     padding: 10px;
     box-shadow: 5px 10px #000000;
+}
+
+/* Reviews */
+
+#reviewArea {
+    margin: 0 auto;
+    width: 70%;
+    padding-top: 10px;
+    font-family: vortice-concept, sans-serif;
+}
+
+#reviewBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 10%;
+    background-color: rgb(36, 41, 143);
+    border-radius: 8px;
+    padding: 1px;
+}
+
+#listOfReviews {
+
 }
