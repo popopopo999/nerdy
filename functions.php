@@ -7,3 +7,6 @@ foreach(glob("pageGen/*.php") as $filename){
     include $filename;
 }
 
+foreach(glob("errorHandlers/*.php") as $filename){
+    include $filename;
+}
