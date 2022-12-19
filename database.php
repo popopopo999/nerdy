@@ -115,3 +115,14 @@ function getStockgroupsImage($id, $databaseConnection) {
 
     return $R;
 }
+
+function AddUnitWeightToShoppingCartItems($id, $databaseConnection) {
+    $result = "SELECT TypicalWeightPerUnit FROM stockitems WHERE StockItemID = ?";
+    $Statement = mysqli_prepare($databaseConnection, $result);
+    mysqli_stmt_bind_param($Statement, "i", $id);
+    mysqli_stmt_execute($Statement);
+    $R = mysqli_stmt_get_result($Statement);
+    $R = mysqli_fetch_all($R, MYSQLI_ASSOC);
+
+    return $R[0]["TypicalWeightPerUnit"];
+}
