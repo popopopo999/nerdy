@@ -1,6 +1,9 @@
 <div id="shoppingcartContainer">
 <?php
 function showShoppingcartContents($contents){
+$totalWeight = 0;
+$shippingPrice = 0;
+$databaseConnection = connectToDatabase();
     $totalPrijsArr = Array();
     if(empty($contents))
     print("<h1>Shopping cart is empty!</h1>");
@@ -54,6 +57,23 @@ function showShoppingcartContents($contents){
                 </div>
                 <?php
                 array_push($totalPrijsArr, $prijs);
+                AddUnitWeightToShoppingCartItems($row["StockItemID"], $databaseConnection);
+                $totalWeight = $totalWeight + AddUnitWeightToShoppingCartItems($row["StockItemID"], $databaseConnection) * $aantal;
+                if ($totalWeight < 1) {
+                    $shippingPrice = 0.69;
+                } else {
+                    if ($totalWeight >1 and $totalWeight < 3) {
+                        $shippingPrice = 4.200;
+                    } else {
+                        if ($totalWeight > 3 and $totalWeight < 10) {
+                            $shippingPrice = 5.99;
+                        } else {
+                            if ($totalWeight > 10) {
+                                $shippingPrice = 10;
+                            }
+                        }
+                    }
+                }
     }
                 $_SESSION["totaalprijs"] = array_sum($totalPrijsArr);
                 $_SESSION["cartInhoudArr"] = count($totalPrijsArr); 
@@ -66,7 +86,7 @@ function showShoppingcartContents($contents){
                             <td colspan="2"><h2 class="totaalprijs">Totaalprijs</h2></td>
                         <tr>
                             <td>Verzending</td>
-                            <td>&euro; 0</td>
+                            <td>&euro; <?php print($shippingPrice) ?></td>
                         </tr>
                         <tr>
                             <td>Totaalprijs (inclusief btw)</td>
