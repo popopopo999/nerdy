@@ -45,7 +45,22 @@ function insertBestellingLine($databaseConnection, $orderID){
 
         mysqli_stmt_bind_param($Statement, "iii", $product, $orderID, $amount);
         mysqli_stmt_execute($Statement);
+        subtractQuantityOnHand($databaseConnection, $product, $amount);
         mysqli_stmt_close($Statement);
     }
     emptyShoppingCart();
+}
+
+function subtractQuantityOnHand($databaseConnection, $itemID, $amount){
+    $SQL = "UPDATE stockitemholdings
+            SET QuantityOnHand = QuantityOnHand - ?
+            WHERE StockItemID = ?";
+    $Statement = mysqli_stmt_init($databaseConnection);
+    if(!mysqli_stmt_prepare($Statement, $SQL)){
+        header("location: localhost/nerdy-Clone/nerdy/?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($Statement, "ii", $amount, $itemID);
+    mysqli_stmt_execute($Statement);
 }
