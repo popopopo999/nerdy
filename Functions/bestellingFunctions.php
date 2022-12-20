@@ -16,20 +16,32 @@ function insertBestelling($databaseConnection, $Values){
     if(empty($_SESSION["winkelwagen_inhoud"]))
         header("location: index.php");
 
-    $SQL = "INSERT INTO bestellingen (BestellingDatum, Voornaam, Achternaam, Tussenvoegsel, Email, Telefoonnummer, Adres, Huisnummer, Toevoeging, Postcode, Woonplaats) 
+    mysqli_begin_transaction($databaseConnection);
+
+    try{
+        $SQL = "INSERT INTO bestellingen (BestellingDatum, Voornaam, Achternaam, Tussenvoegsel, Email, Telefoonnummer, Adres, Huisnummer, Toevoeging, Postcode, Woonplaats) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $Statement = mysqli_stmt_init($databaseConnection);
-    if(!mysqli_stmt_prepare($Statement, $SQL)){
-        header("location: localhost/nerdy-Clone/nerdy/?error=stmtfailed");
-        exit();
+        $Statement = mysqli_stmt_init($databaseConnection);
+        if(!mysqli_stmt_prepare($Statement, $SQL)){
+            header("location: localhost/nerdy-Clone/nerdy/?error=stmtfailed");
+            exit();
+        }
+
+        mysqli_stmt_bind_param($Statement, "sssssssisss", $currentDate, $Voornaam, $Achternaam, $Tussenvoegsel, $email, $Telefoonnummer, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Woonplaats);
+        mysqli_stmt_execute($Statement);
+        $orderID = mysqli_insert_id($databaseConnection);
+        mysqli_stmt_close($Statement);
+
+        insertBestellingLine($databaseConnection, $orderID);
+
+        mysqli_commit($databaseConnection);
+    } catch (mysqli_sql_exception $exception){
+        mysqli_rollback($databaseConnection);
+
+        throw $exception;
     }
 
-    mysqli_stmt_bind_param($Statement, "sssssssisss", $currentDate, $Voornaam, $Achternaam, $Tussenvoegsel, $email, $Telefoonnummer, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Woonplaats);
-    mysqli_stmt_execute($Statement);
-    $orderID = mysqli_insert_id($databaseConnection);
-    mysqli_stmt_close($Statement);
 
-    insertBestellingLine($databaseConnection, $orderID);
 }
 
 function insertBestellingLine($databaseConnection, $orderID){
