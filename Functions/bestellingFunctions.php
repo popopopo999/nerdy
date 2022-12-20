@@ -11,7 +11,7 @@ function insertBestelling($databaseConnection, $Values){
     $toevoeging = $Values["Toevoeging"];
     $Postcode = $Values["Postcode"];
     $Telefoonnummer = $Values["Telefoonnummer"];
-    $Woonplaats = "Moet toegevoegd worden!";
+    $Woonplaats = $Values["Woonplaats"];
 
     if(empty($_SESSION["winkelwagen_inhoud"]))
         header("location: index.php");
