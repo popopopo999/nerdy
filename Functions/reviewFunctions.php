@@ -45,7 +45,8 @@ function reviewsProduct($databaseConnection, $itemID) {
 
     $getFromDatabase = "SELECT gebruikersnaam, score, writtenreview, date
     FROM productreviews
-    WHERE stockitemID = ".$itemID;
+    WHERE stockitemID = ".$itemID."
+    ORDER BY date";
 
     $Statement = mysqli_prepare($databaseConnection, $getFromDatabase);
     //mysqli_stmt_bind_param($Statement, "i", $CategoryID);
@@ -61,35 +62,42 @@ function showReviews($reviews) {
     if (empty($reviews)) {
         print("Nog geen reviews geschreven. Laat als eerste een review achter!");
     } else {
-?>
-
-    <table id="listOfReviews">
-        <tr>
-            <th>Gebruikersnaam</th>
-            <th>Score</th>
-            <th>Review</th>
-            <th>Datum</th>
-        </tr>
-
-<?php
         foreach ($reviews as $review) {
+        ?>
+
+        <div id="singleReview">
+
+        <?php
             $gebruikersnaam = ($review["gebruikersnaam"]);
             $score = $review["score"];
             $writtenReview = $review["writtenreview"];
             $date = $review["date"];
+?>
+            <div id="scoreReview">
+                Score: <?php print($score); ?> / 5
+            </div>
 
-            print("<tr>");
+            <div id="unReview">
+                Geschreven door: <?php print($gebruikersnaam); ?>
+            </div>
 
-            print("<td>$gebruikersnaam</td>");
-            print("<td>$score</td>");
-            print("<td>$writtenReview</td>");
-            print("<td>$date</td>");
+            <div id="textReview">
+                <?php print($writtenReview); ?>
+            </div>
 
-            print("</tr>");
+            <div id="dateReview">
+                Datum: <?php print($date); ?>
+            </div>
+        </div>
+
+        <br>
+
+<?php
         }
 
     }
 }
+
 
 function totalReviewScore($databaseConnection, $itemID) {
 

@@ -23,6 +23,8 @@ function showUserForm(){
     <br><br><br>
     <h4>Adresgegevens</h4>
     <br>
+    <h6>Woonplaats</h6>
+    <input type="text" name="Woonplaats" id="Straatnaam" placeholder="Woonplaats" require <?php addValue('Woonplaats') ?> <br>
     <h6>Straatnaam</h6>
     <input type="text" name="Straatnaam" id="Straatnaam" placeholder="Straatnaam" require <?php addValue('Straatnaam') ?> <br>
     <br><br>

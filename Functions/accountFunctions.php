@@ -1,6 +1,6 @@
 <?php
-function createUser($connection, $uid, $email, $Voornaam, $Tussenvoegsel, $lastname, $pwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer) {
-    $sql = "INSERT INTO klant (Voornaam, Tussenvoegsel, Achternaam, Email, Gebruikersnaam, Wachtwoord, Straatnaam, Huisnummer, Toevoeging, Postcode, Telefoonnummer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+function createUser($connection, $uid, $email, $Voornaam, $Tussenvoegsel, $lastname, $pwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer, $Woonplaats) {
+    $sql = "INSERT INTO klant (Voornaam, Tussenvoegsel, Achternaam, Email, Gebruikersnaam, Wachtwoord, Straatnaam, Huisnummer, Toevoeging, Postcode, Telefoonnummer, Woonplaats) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($connection);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: localhost/nerdy-Clone/nerdy/?error=stmtfailed");
@@ -9,7 +9,7 @@ function createUser($connection, $uid, $email, $Voornaam, $Tussenvoegsel, $lastn
 
     $Hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sssssssisss", $Voornaam, $Tussenvoegsel, $lastname, $email, $uid, $Hashedpwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer);
+    mysqli_stmt_bind_param($stmt, "sssssssissss", $Voornaam, $Tussenvoegsel, $lastname, $email, $uid, $Hashedpwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer, $Woonplaats);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     LoginUser($connection, $uid, $pwd);
@@ -52,6 +52,7 @@ function signUp(){
     $toevoeging = $_POST["Toevoeging"];
     $Postcode = $_POST["Postcode"];
     $Telefoonnummer = $_POST["Telefoonnummer"];
+    $Woonplaats = $_POST["Woonplaats"];
 
 
     require_once 'database.php';
@@ -80,7 +81,7 @@ function signUp(){
         exit();
     }
 
-    createUser($databaseConnection, $uid, $email, $Voornaam, $Tussenvoegsel, $Achternaam, $pwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer);
+    createUser($databaseConnection, $uid, $email, $Voornaam, $Tussenvoegsel, $Achternaam, $pwd, $Straatnaam, $Huisnummer, $toevoeging, $Postcode, $Telefoonnummer, $Woonplaats);
 }
 
 function login(){
@@ -109,7 +110,7 @@ function logout(){
 }
 
 function getUserData($connection){
-    $sql = "SELECT Voornaam, Tussenvoegsel, Achternaam, Email, Straatnaam, Huisnummer, Toevoeging, Postcode, Telefoonnummer
+    $sql = "SELECT Voornaam, Tussenvoegsel, Achternaam, Email, Straatnaam, Huisnummer, Toevoeging, Postcode, Telefoonnummer, Woonplaats
             FROM klant WHERE Gebruikersnaam = '" . $_SESSION["Gebruikersnaam"] . "'";
     $stmt = mysqli_stmt_init($connection);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

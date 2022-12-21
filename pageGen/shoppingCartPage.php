@@ -1,6 +1,10 @@
 <div id="shoppingcartContainer">
 <?php
 function showShoppingcartContents($contents){
+    $databaseConnection = connectToDatabase();
+$totalWeight = 0;
+$shippingPrice = 0;
+$databaseConnection = connectToDatabase();
     $totalPrijsArr = Array();
     if(empty($contents))
     print("<h1>Shopping cart is empty!</h1>");
@@ -54,8 +58,25 @@ function showShoppingcartContents($contents){
                 </div>
                 <?php
                 array_push($totalPrijsArr, $prijs);
-                unset($_SESSION["items"][$row['StockItemID']]);
+                //unset($_SESSION["items"][$row['StockItemID']]);
                 // print_r($row['StockItemID']);
+                AddUnitWeightToShoppingCartItems($row["StockItemID"], $databaseConnection);
+                $totalWeight = $totalWeight + AddUnitWeightToShoppingCartItems($row["StockItemID"], $databaseConnection) * $aantal;
+                if ($totalWeight < 1) {
+                    $shippingPrice = 0.69;
+                } else {
+                    if ($totalWeight >1 and $totalWeight < 3) {
+                        $shippingPrice = 4.200;
+                    } else {
+                        if ($totalWeight > 3 and $totalWeight < 10) {
+                            $shippingPrice = 5.99;
+                        } else {
+                            if ($totalWeight > 10) {
+                                $shippingPrice = 10;
+                            }
+                        }
+                    }
+                }
     }
                 $_SESSION["totaalprijs"] = array_sum($totalPrijsArr);
                 $_SESSION["cartInhoudArr"] = count($totalPrijsArr); 
@@ -68,11 +89,24 @@ function showShoppingcartContents($contents){
                             <td colspan="2"><h2 class="totaalprijs">Totaalprijs</h2></td>
                         <tr>
                             <td>Verzending</td>
-                            <td>&euro; 0</td>
+                            <td>&euro; <?php print($shippingPrice) ?></td>
                         </tr>
                         <tr>
                             <td>Totaalprijs (inclusief btw)</td>
                             <td>&euro; <?php echo(sprintf(" %0.2f", $_SESSION["totaalprijs"]));?> </td>
+                            <td>Couponkorting</td>
+                            <?php
+                            if(isset($_POST["CouponCodeInvoerBtn"])){
+                                $_SESSION["totaalprijs"] *=
+                                    ((100-getCouponKorting($_POST, $databaseConnection)) / 100);
+                                ?>
+                                <td>
+                                    <?php echo(sprintf(" %0.2f", $_SESSION["totaalprijs"]));?>
+                                </td>
+                                <?php
+                            }
+                            ?>
+
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -80,6 +114,11 @@ function showShoppingcartContents($contents){
                                     <input type="hidden" name="totaalPrijs" value="<?php $_SESSION["totaalprijs"]; ?>">
                                     <input class="btnAanpassen" type="submit" name="verwijzingBetaling" value="Betalen">
                             </td>
+                    </form>
+                            <form method="POST">
+                                <input type="text" name="CouponCode" id="CouponCode" placeholder="Coupon code" required <br>
+                                <input type="submit" name="CouponCodeInvoerBtn" value="Invoeren">
+                            </form>
                         </tr>
                     </table>
                 </div>
