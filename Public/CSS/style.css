@@ -651,6 +651,17 @@ ul#ul-class-price li {
     color: #fff;
 }
 
+.CouponCode {
+    left: 15%;
+    width: 20%;
+    border-radius: 8px;
+}
+
+.CouponCodeInvoerBtn {
+    left: 15%;
+    width: 20%;
+    border-radius: 8px;
+
 /* Reviews */
 
 #reviewArea {
@@ -670,7 +681,6 @@ ul#ul-class-price li {
     border-radius: 8px;
     padding: 1px;
 }
-
 #singleReview {
     min-height: 15%;
     height: auto;
@@ -726,3 +736,4 @@ ul#ul-class-price li {
     border-radius: 8px;
     background: #676EFF;
 }
+
