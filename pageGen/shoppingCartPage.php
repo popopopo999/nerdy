@@ -96,7 +96,7 @@ $databaseConnection = connectToDatabase();
                             <td colspan="2">
                                 <form method="POST" action="BetaalPagina.php">
                                     <input type="hidden" name="totaalPrijs" value="<?php $_SESSION["totaalprijs"]; ?>">
-                                    <input class="btnAanpassen" type="submit" name="verwijzingBetaling" value="Betalen"
+                                    <input id="payButton" type="submit" name="verwijzingBetaling" value="Betalen"
                             </td>
                         </tr>
                     </table>

@@ -55,11 +55,13 @@ establishWinkelwagen();
 <ul id="ul-class-navigation">
     <?php
     if (isset($_SESSION["Gebruikersnaam"])) {
-        echo "<li><a href=\"profile.php\" class=\"HrefDecoration\"> Profiel </a></li>";
+        $username = $_SESSION["Gebruikersnaam"];
+
+        echo "<li>Welkom $username!</li>";
         echo "<li><a href=\"logout.php\" class=\"HrefDecoration\"> Uitloggen</a></li>";
     }
     else {
-        echo "<li><a href=\"Signup.php\" class=\"HrefDecoration\"> aanmelden </a></li>";
+        echo "<li><a href=\"Signup.php\" class=\"HrefDecoration\"> Aanmelden </a></li>";
         echo "<li><a href=\"login.php\" class=\"HrefDecoration\"> Inloggen</a></li>";
     }
     ?>
@@ -73,7 +75,7 @@ establishWinkelwagen();
                     </i>
                 </a>
             </li>
-        </ul> 
+        </ul>
 
 <!-- einde code voor US3 zoeken -->
     </div>

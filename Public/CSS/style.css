@@ -66,6 +66,7 @@ ul#ul-class-navigation {
     line-height: 200px;
     position: absolute;
 }
+
 ul#ul-class-navigation li {
     color: white;
     display: inline;
@@ -640,6 +641,16 @@ ul#ul-class-price li {
     box-shadow: 5px 10px #000000;
 }
 
+#payButton {
+    width: 100%;
+    min-height: 10%;
+    height: auto;
+    background: #50C878;
+    border: 1px black solid;
+    border-radius: 8px;
+    color: #fff;
+}
+
 /* Reviews */
 
 #reviewArea {
@@ -696,4 +707,22 @@ ul#ul-class-price li {
     position: absolute;
     top: 8px;
     right: 16px;
+}
+
+#scorefield {
+    height: auto;
+    width: 80%;
+}
+
+#reviewField {
+    height: auto;
+    width: 80%;
+}
+
+#reviewSubmit {
+    min-height: 4%;
+    height: auto;
+    width: 80%;
+    border-radius: 8px;
+    background: #676EFF;
 }

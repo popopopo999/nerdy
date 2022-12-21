@@ -218,12 +218,18 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
 <div id="reviewForm">
     <br>
 <?php if(isset($_SESSION["Gebruikersnaam"])) { ?>
+        <h5>Schrijf uw eigen review over dit product:</h5>
+    <br>
     <form method="POST" action="insertReview.php">
         <input type="hidden" name="productID" value="<?php print($_GET['id']); ?>">
-        Score <input type="number" name="score" value="" min="1" max="5" placeholder="Geef hier een score van 1 tot 5" required>
-        Review <textarea name="reviewText" placeholder="Schrijf hier uw review." required></textarea>
-        <input type="submit" name="sendReview" value="Plaats review">
+        <p>Score</p>
+        <input type="number" id="scorefield" name="score" value="" min="1" max="5" placeholder="Geef hier een score van 1 tot 5" required>
+        <p>Review</p>
+        <textarea id="reviewField" name="reviewText" placeholder="Schrijf hier uw review." required></textarea>
+        <input type="submit" id="reviewSubmit" name="sendReview" value="Plaats review">
     </form>
+    <br>
+    <h5>Reviews van anderen:</h5>
     <?php } ?>
 </div>
     <br> <br>
