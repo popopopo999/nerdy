@@ -70,6 +70,18 @@ establishWinkelwagen();
                 <a href="shoppingcart.php"><img src="Public\Img\cartimg.png" width="40" height="40">
                     <i class="result" style="color: yellow;">
                     <?php echo count(getShoppingcartContents($databaseConnection)); ?>
+                    <script>
+                        $.ajax({
+                            url: header.php, // current page
+                            type: 'POST',
+                            data: {
+                                var1: count(getShoppingcartContents($databaseConnection)) // of if writing a JS variable remove the quotes.
+                            },
+                            success: function() {
+                                alert("hoi")
+                            }
+                        });
+                    </script>
                     </i>
                 </a>
             </li>

@@ -41,7 +41,6 @@ function getProductsQuery($products){
 function getShoppingcartContents($databaseConnection){
     if(empty($_SESSION["winkelwagen_inhoud"]))
         return array();
-
     $Query = getProductsQuery($_SESSION["winkelwagen_inhoud"]);
     $Statement = mysqli_prepare($databaseConnection, $Query);
     //mysqli_stmt_bind_param($Statement, "i", $CategoryID);
@@ -64,4 +63,9 @@ function updateNumberOfItems($key, $amount){
 
 function emptyShoppingCart(){
     $_SESSION["winkelwagen_inhoud"] = array();
+}
+
+function totalItemsWebsite(){
+    $query = "SELECT count(StockItemID) from stockitems";
+
 }

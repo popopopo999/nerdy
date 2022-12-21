@@ -20,7 +20,16 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
             </div>
         <?php
         }
-        ?>
+        if ($StockItem != null) {
+            if (!isset($_SESSION["items"])){
+                $_SESSION['items'] = array();
+            }
+            if(array_key_exists($StockItem["StockItemID"], $_SESSION["items"])){
+                $_SESSION['items'][$StockItem["StockItemID"]]++;
+            }else{
+                $_SESSION['items'][$StockItem["StockItemID"]] = 1;
+            }
+            ?>
         <div id="ArticleHeader">
             <?php
             if(!$StockItemImage) {
@@ -194,3 +203,5 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
     ?>
     </div>
 </div>
+<?php
+    }?>
