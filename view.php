@@ -173,7 +173,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                         <?php
                             if (checkIfChillerStock($databaseConnection, $StockItem["StockItemID"])){
                                 $temp =getCurrentTemperature($databaseConnection);
-                                print $temp;
+                                print ($temp . '°C');
 
                                 }
                         else {
