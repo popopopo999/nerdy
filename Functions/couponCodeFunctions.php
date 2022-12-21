@@ -35,7 +35,9 @@ function checkCouponCodeInput($databaseConnection)
 
 function getCouponKorting($coupon, $databaseConnection){
     $inputCode = ($coupon["CouponCode"]);
-    $couponCodes = getCouponCodes($inputCode, $databaseConnection);
-    $perc = $couponCodes[0]["DiscountPercentage"];
-    return $perc;
+    if($couponCodes = getCouponCodes($inputCode, $databaseConnection)){
+        $perc = $couponCodes[0]["DiscountPercentage"];
+        return $perc;
+    }
+    print("Ongeldige coupon");
 }
