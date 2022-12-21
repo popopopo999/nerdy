@@ -2,6 +2,8 @@
 function getVoorraadTekst($actueleVoorraad) {
     if ($actueleVoorraad > 1000) {
         return "Ruime voorraad beschikbaar.";
+    }elseif($actueleVoorraad <= 0){
+        return "Uitverkocht";
     } else {
         return "Voorraad: $actueleVoorraad";
     }
