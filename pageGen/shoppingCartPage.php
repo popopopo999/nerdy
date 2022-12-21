@@ -1,13 +1,10 @@
 <div id="shoppingcartContainer">
 <?php
 function showShoppingcartContents($contents){
-<<<<<<< HEAD
     $databaseConnection = connectToDatabase();
-=======
 $totalWeight = 0;
 $shippingPrice = 0;
 $databaseConnection = connectToDatabase();
->>>>>>> a07864dd2cc5f6b1cfed545c0a395b6f68347cbf
     $totalPrijsArr = Array();
     if(empty($contents))
     print("<h1>Shopping cart is empty!</h1>");
