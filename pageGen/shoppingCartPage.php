@@ -94,6 +94,8 @@ $databaseConnection = connectToDatabase();
                         <tr>
                             <td>Totaalprijs (inclusief btw)</td>
                             <td>&euro; <?php echo(sprintf(" %0.2f", $_SESSION["totaalprijs"]));?> </td>
+                        </tr>
+                        <tr>
                             <td>Couponkorting</td>
                             <?php
                             if(isset($_POST["CouponCodeInvoerBtn"])){
@@ -118,7 +120,7 @@ $databaseConnection = connectToDatabase();
                     </form>
                             <form method="POST">
                                 <input type="text" name="CouponCode" id="CouponCode" placeholder="Coupon code" required <br>
-                                <input type="submit" name="CouponCodeInvoerBtn" value="Invoeren">
+                                <input type="submit" name="CouponCodeInvoerBtn" id="CouponCodeInvoerBtn" value="Invoeren">
                             </form>
                         </tr>
                     </table>

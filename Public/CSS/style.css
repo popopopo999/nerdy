@@ -641,6 +641,17 @@ ul#ul-class-price li {
     box-shadow: 5px 10px #000000;
 }
 
+#CouponCode {
+    width: 56%;
+}
+
+#CouponCodeInvoerBtn {
+    border-radius: 8px;
+    width: 56%;
+    background: #676EFF;
+}
+
+
 #payButton {
     width: 100%;
     min-height: 10%;
@@ -649,18 +660,6 @@ ul#ul-class-price li {
     border: 1px black solid;
     border-radius: 8px;
     color: #fff;
-}
-
-.CouponCode {
-    left: 15%;
-    width: 20%;
-    border-radius: 8px;
-}
-
-.CouponCodeInvoerBtn {
-    left: 15%;
-    width: 20%;
-    border-radius: 8px;
 }
 
 /* Reviews */
@@ -682,7 +681,13 @@ ul#ul-class-price li {
     border-radius: 8px;
     padding: 1px;
 }
+
+#reviewform {
+    font-family: pt-sans, sans-serif;
+}
+
 #singleReview {
+    font-family: pt-sans, sans-serif;
     min-height: 15%;
     height: auto;
     width: 80%;
