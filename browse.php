@@ -266,6 +266,7 @@ if (isset($amount)) {
                         </div>
                     </div>
                     <h1 class="StockItemID">Artikelnummer: <?php print $row["StockItemID"]; ?></h1>
+                    <h1 class="StockItemID"><?php print(totalReviewScore($databaseConnection, $row['StockItemID'])) ?> / 5 (<?php print(howManyReviews($databaseConnection, $row['StockItemID'])); ?> reviews)</h1>
                     <p class="StockItemName"><?php print $row["StockItemName"]; ?></p>
                     <p class="StockItemComments"><?php print $row["MarketingComments"]; ?></p>
                     <h4 class="ItemQuantity"><?php print getVoorraadTekst($row["QuantityOnHand"]); ?></h4>

@@ -62,3 +62,6 @@ function updateNumberOfItems($key, $amount){
     $_SESSION["winkelwagen_inhoud"] = $products;
 }
 
+function emptyShoppingCart(){
+    $_SESSION["winkelwagen_inhoud"] = array();
+}

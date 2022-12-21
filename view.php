@@ -90,7 +90,8 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
             }
         ?>
         <form method="post">
-            <h1 class="StockItemID" name="StockItemID">Artikelnummer: <?php print $StockItem["StockItemID"]; ?></h1>
+            <h1 class="StockItemID" name="StockItemID">Artikelnummer: <?php print $StockItem["StockItemID"]; ?> <br><br>
+                <p><?php print(totalReviewScore($databaseConnection, $_GET['id'])) ?> / 5 (<?php print(howManyReviews($databaseConnection, $_GET['id'])); ?> reviews)</p></h1>
             <input type="hidden" name="itemID" value="<?php print $StockItem["StockItemID"] ?>">
             <h2 class="StockItemNameViewSize StockItemName">
                 <?php print $StockItem['StockItemName']; ?>
@@ -105,6 +106,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                             <input class="Aantal" name="Aantal" type="number" value="1" min="1" max="<?php print($pVoorraad);?>">
                             <button class="btnToevoegen" name="btnToevoegen" type="submit">Toevoegen aan winkelwagen</button>
         </form>
+
 
         <form method="post" action="shoppingcart.php">
             <?php
@@ -138,9 +140,12 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                 </thead>
                 <?php
                 foreach ($CustomFields as $SpecName => $SpecText) { ?>
+
                     <tr>
                         <td>
-                            <?php print $SpecName; ?>
+                            <?php print $SpecName;
+                            ?>
+
                         </td>
                         <td>
                             <?php
@@ -151,20 +156,81 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                             } else {
                                 print $SpecText;
                             }
-                            ?>
+                           ?>
+
                         </td>
+
                     </tr>
+
                 <?php } ?>
+
+                <tr>
+                    <td>
+                        <p>Temperatuur </p>
+
+                    </td>
+                    <td>
+                        <?php
+                            if (checkIfChillerStock($databaseConnection, $StockItem["StockItemID"])){
+                                $temp =getCurrentTemperature($databaseConnection);
+                                print ($temp . '°C');
+
+                                }
+                        else {
+                            print ("Temperatuur is niet van toepassing op dit product.");
+                        }
+                        ?>
+
+                        </
+                    </td>
+                </tr>
+
                 </table><?php
             } else { ?>
+            <table>
 
+                <td>
                 <p><?php print $StockItem['CustomFields']; ?>.</p>
+
                 <?php
-            }
-            ?>
+            }?>
+
+
+                </td>
+            </table>
+
+
+
         </div>
         <?php
     } else {
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
     } ?>
+</div>
+
+<!-- Reviews -->
+
+<div id="reviewArea">
+    <div id="reviewBox">
+    <h3> <?php print(totalReviewScore($databaseConnection, $_GET['id'])) ?> / 5 </h3>
+    </div>
+    <h6> <br>Op basis van <?php print(howManyReviews($databaseConnection,$_GET['id'])); ?> reviews<br><br></h6>
+<div id="reviewForm">
+    <br>
+<?php if(isset($_SESSION["Gebruikersnaam"])) { ?>
+    <form method="POST" action="insertReview.php">
+        <input type="hidden" name="productID" value="<?php print($_GET['id']); ?>">
+        Score <input type="number" name="score" value="" min="1" max="5" placeholder="Geef hier een score van 1 tot 5" required>
+        Review <textarea name="reviewText" placeholder="Schrijf hier uw review." required></textarea>
+        <input type="submit" name="sendReview" value="Plaats review">
+    </form>
+    <?php } ?>
+</div>
+    <br> <br>
+    <div id="reviewList">
+    <?php
+    $aantalReviews = reviewsProduct($databaseConnection, $_GET['id']);
+    showReviews($aantalReviews);
+    ?>
+    </div>
 </div>

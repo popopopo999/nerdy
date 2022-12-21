@@ -1,7 +1,7 @@
 <?php
-function emptyInputSignIn($firstname, $lastname, $email, $uid, $pwd, $pwdrepeat) {
+function emptyInputSignIn($Voornaam, $lastname, $email, $uid, $pwd, $pwdrepeat) {
     $result;
-    if(empty($firstname) || empty($lastname) ||empty($email) || empty($uid) || empty($pwd) || empty($pwdrepeat)) {
+    if(empty($Voornaam) || empty($lastname) ||empty($email) || empty($uid) || empty($pwd) || empty($pwdrepeat)) {
         $result = true;
     }
     else {

@@ -492,7 +492,7 @@ ul#ul-class-price li {
 .btnToevoegen {
     width: auto;
     height: auto;
-    background: #676EFF;
+    background: #50C878;
     border: 1px black solid;
     border-radius: 8px;
     color: #fff;
@@ -501,7 +501,7 @@ ul#ul-class-price li {
 .btnAanpassen {
     width: 100px;
     height: 45px;
-    background: #676EFF;
+    background: #50C878;
     border: 1px black solid;
     border-radius: 8px;
     color: #fff;
@@ -510,7 +510,7 @@ ul#ul-class-price li {
 .btnVerwijder {
     width: 100px;
     height: 45px;
-    background: darkred;
+    background: #D2042D;
     border: 1px black solid;
     border-radius: 8px;
     color: #fff;
@@ -640,6 +640,7 @@ ul#ul-class-price li {
     box-shadow: 5px 10px #000000;
 }
 
+<<<<<<< HEAD
 .CouponCode {
     left: 15%;
     width: 20%;
@@ -650,4 +651,62 @@ ul#ul-class-price li {
     left: 15%;
     width: 20%;
     border-radius: 8px;
+=======
+/* Reviews */
+
+#reviewArea {
+    margin: 0 auto;
+    width: 70%;
+    padding-top: 10px;
+    font-family: vortice-concept, sans-serif;
+}
+
+#reviewBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 10%;
+    background-color: rgb(36, 41, 143);
+    border-radius: 8px;
+    padding: 1px;
+}
+
+#singleReview {
+    min-height: 15%;
+    height: auto;
+    width: 80%;
+    overflow: auto;
+    color: #000000;
+    border-radius: 8px;
+    background-color: #fff;
+    position: relative;
+}
+
+#scoreReview {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+#unReview {
+    position: absolute;
+    top: 30px;
+    left: 16px;
+}
+
+#textReview {
+    position: absolute;
+    overflow: auto;
+    height: auto;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
+#dateReview {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+>>>>>>> a07864dd2cc5f6b1cfed545c0a395b6f68347cbf
 }
