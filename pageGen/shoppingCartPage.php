@@ -62,13 +62,13 @@ $databaseConnection = connectToDatabase();
                 // print_r($row['StockItemID']);
                 AddUnitWeightToShoppingCartItems($row["StockItemID"], $databaseConnection);
                 $totalWeight = $totalWeight + AddUnitWeightToShoppingCartItems($row["StockItemID"], $databaseConnection) * $aantal;
-                if ($totalWeight < 1) {
+                if ($totalWeight <= 1) {
                     $shippingPrice = 0.69;
                 } else {
-                    if ($totalWeight >1 and $totalWeight < 3) {
+                    if ($totalWeight >1 and $totalWeight <= 3) {
                         $shippingPrice = 4.200;
                     } else {
-                        if ($totalWeight > 3 and $totalWeight < 10) {
+                        if ($totalWeight > 3 and $totalWeight <= 10) {
                             $shippingPrice = 5.99;
                         } else {
                             if ($totalWeight > 10) {
