@@ -107,6 +107,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                             <button class="btnToevoegen" name="btnToevoegen" type="submit">Toevoegen aan winkelwagen</button>
         </form>
 
+
         <form method="post" action="shoppingcart.php">
             <?php
             if(isset($_POST["btnToevoegen"])){
@@ -139,9 +140,12 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                 </thead>
                 <?php
                 foreach ($CustomFields as $SpecName => $SpecText) { ?>
+
                     <tr>
                         <td>
-                            <?php print $SpecName; ?>
+                            <?php print $SpecName;
+                            ?>
+
                         </td>
                         <td>
                             <?php
@@ -152,17 +156,52 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
                             } else {
                                 print $SpecText;
                             }
-                            ?>
+                           ?>
+
                         </td>
+
                     </tr>
+
                 <?php } ?>
+
+                <tr>
+                    <td>
+                        <p>Temperatuur </p>
+
+                    </td>
+                    <td>
+                        <?php
+                            if (checkIfChillerStock($databaseConnection, $StockItem["StockItemID"])){
+                                $temp =getCurrentTemperature($databaseConnection);
+                                print $temp;
+
+                                }
+                        else {
+                            print ("Temperatuur is niet van toepassing op dit product.");
+                        }
+                        ?>
+
+                        </
+                    </td>
+                </tr>
+
                 </table><?php
             } else { ?>
+            <table>
 
+                <td>
                 <p><?php print $StockItem['CustomFields']; ?>.</p>
+
                 <?php
-            }
-            ?>
+            }?>
+
+
+                </td>
+            </table>
+
+
+
+        </div>
         <?php
     } else {
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
