@@ -660,6 +660,40 @@ ul#ul-class-price li {
     padding: 1px;
 }
 
-#listOfReviews {
+#singleReview {
+    min-height: 15%;
+    height: auto;
+    width: 80%;
+    overflow: auto;
+    color: #000000;
+    border-radius: 8px;
+    background-color: #fff;
+    position: relative;
+}
 
+#scoreReview {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+#unReview {
+    position: absolute;
+    top: 30px;
+    left: 16px;
+}
+
+#textReview {
+    position: absolute;
+    overflow: auto;
+    height: auto;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
+#dateReview {
+    position: absolute;
+    top: 8px;
+    right: 16px;
 }

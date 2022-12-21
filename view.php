@@ -187,6 +187,7 @@ $pVoorraad = str_replace("Voorraad: ", "", $StockItem['QuantityOnHand']);
     </form>
     <?php } ?>
 </div>
+    <br> <br>
     <div id="reviewList">
     <?php
     $aantalReviews = reviewsProduct($databaseConnection, $_GET['id']);
