@@ -639,3 +639,15 @@ ul#ul-class-price li {
     padding: 10px;
     box-shadow: 5px 10px #000000;
 }
+
+.CouponCode {
+    left: 15%;
+    width: 20%;
+    border-radius: 8px;
+}
+
+.CouponCodeInvoerBtn {
+    left: 15%;
+    width: 20%;
+    border-radius: 8px;
+}
