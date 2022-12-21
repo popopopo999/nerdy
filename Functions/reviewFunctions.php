@@ -46,7 +46,7 @@ function reviewsProduct($databaseConnection, $itemID) {
     $getFromDatabase = "SELECT gebruikersnaam, score, writtenreview, date
     FROM productreviews
     WHERE stockitemID = ".$itemID."
-    ORDER BY date";
+    ORDER BY date DESC";
 
     $Statement = mysqli_prepare($databaseConnection, $getFromDatabase);
     //mysqli_stmt_bind_param($Statement, "i", $CategoryID);
